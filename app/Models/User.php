@@ -18,9 +18,8 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'photo_profil', 'email', 'password', 'is_active',
+        'numero_telephone', 'login', 'role_id', 'password_change_at'
     ];
 
     /**
@@ -41,4 +40,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The attributes from Profil Model.
+     *
+     * @var array
+     */
+    public function profroleil()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

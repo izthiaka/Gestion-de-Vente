@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,4 +28,18 @@ Auth::routes([
     'verify' => false,
 ]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
+
+    Route::get('/dashboard', [HomeController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/change-password', [ChangePasswordController::class, 'AfirstPassword'])->name('admin.change-password');
+    Route::post('/form-change-password', [ChangePasswordController::class, 'a_update_password'])->name('admin.form-change-password');
+
+    // Route::get('/profil', [AdminController::class, 'profil'])->name('admin.profil');
+});
+
+Route::middleware(['auth', 'isAG'])->group(function() {
+
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('agent.dashboard');
+    Route::get('/change-password', [ChangePasswordController::class, 'firstPassword'])->name('agent.change-password');
+    Route::post('/form-change-password', [ChangePasswordController::class, 'update_password'])->name('agent.form-change-password');
+});

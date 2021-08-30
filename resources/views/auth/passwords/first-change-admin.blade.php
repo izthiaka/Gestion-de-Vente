@@ -16,26 +16,22 @@
                         </a>
                     </div>
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('admin.form-change-password') }}">
                         @csrf
 
                         <div class="form-group mb-3">
-                            <label for="identifiant">Login Or Email</label>
-                            <input class="form-control @error('identifiant') is-invalid @enderror" name="identifiant" type="text" id="identifiant" required placeholder="Enter your identifiant" value="{{ old('identifiant') }}">
-                            @error('identifiant')
+                            <label for="ancien_mot_de_passe">Ancien mot de passe</label>
+                            <input class="form-control @error('ancien_mot_de_passe') is-invalid @enderror" type="password" name="ancien_mot_de_passe" required id="ancien_mot_de_passe" placeholder="Enter your password">
+                            @error('ancien_mot_de_passe')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
 
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-muted float-right">Forgot your password?</a>
-                        @endif
-
                         <div class="form-group mb-3">
-                            <label for="password">Password</label>
-                            <input class="form-control @error('password') is-invalid @enderror" name="password" type="password" required id="password" placeholder="Enter your password">
+                            <label for="password">Nouveau mot de passe</label>
+                            <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" required id="password" placeholder="Enter your password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -44,14 +40,17 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="remember" id="remember" checked>
-                                <label class="custom-control-label" for="remember">Remember me</label>
-                            </div>
+                            <label for="password_confirmation">Confirmer nouveau mot de passe</label>
+                            <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" required id="password_confirmation" placeholder="Enter your password">
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group text-center mb-3">
-                            <button class="btn btn-primary btn-lg width-lg btn-rounded" type="submit"> Connexion </button>
+                            <button class="btn btn-primary btn-lg width-lg btn-rounded" type="submit"> Changer de mot de passe </button>
                         </div>
 
                     </form>
