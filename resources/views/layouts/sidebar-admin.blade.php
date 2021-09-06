@@ -5,9 +5,8 @@
         <li class="menu-title">Tableau de Bord</li>
 
         <li>
-            <a href="index.html">
+            <a href="{{route('admin.dashboard')}}">
                 <i class="fe-airplay"></i>
-                <span class="badge badge-success badge-pill float-right">1</span>
                 <span> Dashboard </span>
             </a>
         </li>

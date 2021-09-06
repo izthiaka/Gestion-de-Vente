@@ -14,7 +14,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Gestion Vente</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div>
@@ -32,12 +32,11 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body wigdet-two-content">
-                                <p class="m-0 text-uppercase text-white" title="Statistics">Statistics</p>
-                                <h2 class="text-white"><span data-plugin="counterup">65841</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
-                                <p class="text-white m-0"><b>10%</b> From previous period</p>
+                                <p class="m-0 text-uppercase text-white" title="Statistics">ADMIN</p>
+                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['admin']}}</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
-                                <i class="mdi mdi-chart-line font-22 avatar-title text-white"></i>
+                                <i class="mdi mdi-account-network font-22 avatar-title text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -49,12 +48,11 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body wigdet-two-content">
-                                <p class="m-0 text-white text-uppercase" title="User Today">User Today</p>
-                                <h2 class="text-white"><span data-plugin="counterup">52142</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
-                                <p class="text-white m-0"><b>5.6%</b> From previous period</p>
+                                <p class="m-0 text-white text-uppercase" title="User Today">AGENT</p>
+                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['agent']}}</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
-                                <i class="mdi mdi-access-point-network  font-22 avatar-title text-white"></i>
+                                <i class="mdi mdi-tooltip-account  font-22 avatar-title text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -67,8 +65,7 @@
                         <div class="media">
                             <div class="media-body wigdet-two-content">
                                 <p class="m-0 text-uppercase text-white" title="Request Per Minute">Request Per Minute</p>
-                                <h2 class="text-white"><span data-plugin="counterup">2365</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
-                                <p class="text-white m-0"><b>7.02%</b> From previous period</p>
+                                <h2 class="text-white"><span data-plugin="counterup">2365</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
                                 <i class="mdi mdi-timetable font-22 avatar-title text-white"></i>
@@ -84,8 +81,7 @@
                         <div class="media">
                             <div class="media-body wigdet-two-content">
                                 <p class="m-0 text-white text-uppercase" title="New Downloads">New Downloads</p>
-                                <h2 class="text-white"><span data-plugin="counterup">854</span> <i class="mdi mdi-arrow-up text-white font-22"></i></h2>
-                                <p class="text-white m-0"><b>9.9%</b> From previous period</p>
+                                <h2 class="text-white"><span data-plugin="counterup">854</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
                                 <i class="mdi mdi-cloud-download font-22 avatar-title text-white"></i>
@@ -99,7 +95,7 @@
         <!-- end row -->
 
         <div class="row">
-            <div class="col-xl-4">
+            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title mb-3">Last 30 days statistics</h4>
@@ -110,23 +106,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title mb-3">Total Revenue share</h4>
                         <div dir="ltr">
                             <div id="combine-chart"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title mb-3">Total Revenue share</h4>
-                        <div dir="ltr">
-                            <div id="roated-chart"></div>
                         </div>
                     </div>
                 </div>

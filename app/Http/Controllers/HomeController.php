@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class HomeController extends Controller
 {
     /**
@@ -21,7 +23,15 @@ class HomeController extends Controller
      */
     public function admin()
     {
-        return view('admin.dashboard');
+
+        $nbAdmin = User::where('role_id', 1)->get()->count();
+        $nbAgent = User::where('role_id', 2)->get()->count();
+        $datas = [
+            'admin' => $nbAdmin,
+            'agent' => $nbAgent,
+
+        ];
+        return view('admin.dashboard', compact('datas'));
     }
 
     /**

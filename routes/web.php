@@ -35,7 +35,9 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::get('/change-password', [ChangePasswordController::class, 'AfirstPassword'])->name('admin.change-password');
     Route::post('/form-change-password', [ChangePasswordController::class, 'a_update_password'])->name('admin.form-change-password');
 
-    // Route::get('/profil', [AdminController::class, 'profil'])->name('admin.profil');
+    Route::get('/profil', [UtilisateurController::class, 'profil'])->name('admin.profil');
+    Route::put('/profil_update', [UtilisateurController::class, 'update_profile'])->name('admin.auth-update_profile');
+    Route::put('/profil_password', [UtilisateurController::class, 'update_password'])->name('admin.auth-update_password');
 
     Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('admin.user-list');
     Route::get('/utilisateur/{id}', [UtilisateurController::class, 'edit'])->name('admin.user-edit');
