@@ -46,8 +46,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    public function profroleil()
+    public function profil()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }

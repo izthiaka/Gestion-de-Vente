@@ -263,7 +263,6 @@
 
         <!-- Bootstrap select plugin -->
         <script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
-
         <!-- plugins -->
         <script src="{{asset('assets/libs/c3/c3.min.js')}}"></script>
         <script src="{{asset('assets/libs/d3/d3.min.js')}}"></script>
@@ -273,6 +272,8 @@
 
         <!-- App js -->
         <script src="{{asset('assets/js/app.min.js')}}"></script>
+
+        @yield('script')
 
     </body>
 

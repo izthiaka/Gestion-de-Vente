@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,14 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::post('/form-change-password', [ChangePasswordController::class, 'a_update_password'])->name('admin.form-change-password');
 
     // Route::get('/profil', [AdminController::class, 'profil'])->name('admin.profil');
+
+    Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('admin.user-list');
+    Route::get('/utilisateur/{id}', [UtilisateurController::class, 'edit'])->name('admin.user-edit');
+    Route::put('/utilisateur/{id}/update', [UtilisateurController::class, 'update'])->name('admin.user-update');
+    Route::get('utilisateurs_search', [UtilisateurController::class, 'index'])->name('admin.user-search');
+    Route::put('/statut/{id}', [UtilisateurController::class, 'statut'])->name('admin.user-statut');
+    Route::get('/utilisateur/create', [UtilisateurController::class, 'create'])->name('admin.user-create');
+    Route::post('/utilisateur/store', [UtilisateurController::class, 'store'])->name('admin.user-store');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {
