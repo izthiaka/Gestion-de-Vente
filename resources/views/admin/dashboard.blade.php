@@ -64,11 +64,11 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body wigdet-two-content">
-                                <p class="m-0 text-uppercase text-white" title="Request Per Minute">Request Per Minute</p>
-                                <h2 class="text-white"><span data-plugin="counterup">2365</span></h2>
+                                <p class="m-0 text-uppercase text-white" title="Request Per Minute">Category</p>
+                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['category']}}</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
-                                <i class="mdi mdi-timetable font-22 avatar-title text-white"></i>
+                                <i class="mdi mdi-apple-keyboard-command font-22 avatar-title text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -80,11 +80,11 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body wigdet-two-content">
-                                <p class="m-0 text-white text-uppercase" title="New Downloads">New Downloads</p>
+                                <p class="m-0 text-white text-uppercase" title="New Downloads">Articles</p>
                                 <h2 class="text-white"><span data-plugin="counterup">854</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
-                                <i class="mdi mdi-cloud-download font-22 avatar-title text-white"></i>
+                                <i class="mdi mdi-package-variant-closed font-22 avatar-title text-white"></i>
                             </div>
                         </div>
                     </div>

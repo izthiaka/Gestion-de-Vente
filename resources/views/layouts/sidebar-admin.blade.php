@@ -11,7 +11,7 @@
             </a>
         </li>
 
-        <li>
+        {{-- <li>
             <a href="javascript: void(0);">
                 <i class="fe-grid"></i>
                 <span> Tables </span>
@@ -25,9 +25,23 @@
                 <li><a href="tables-tablesaw.html">Tablesaw Table</a></li>
                 <li><a href="tables-editable.html">Editable Table</a></li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="menu-title mt-2">Paramétres</li>
+
+        <li>
+            <a href="{{route('admin.article-list')}}">
+                <i class="fe-package"></i>
+                <span> Articles </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{route('admin.categorie-list')}}">
+                <i class="fe-command"></i>
+                <span> Categories </span>
+            </a>
+        </li>
 
         <li>
             <a href="{{route('admin.user-list')}}">

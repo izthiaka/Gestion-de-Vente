@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UtilisateurController;
+use App\Http\Controllers\Admin\CategorieController;
+
 use App\Http\Controllers\Auth\ChangePasswordController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +50,19 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::put('/statut/{id}', [UtilisateurController::class, 'statut'])->name('admin.user-statut');
     Route::get('/utilisateur/create', [UtilisateurController::class, 'create'])->name('admin.user-create');
     Route::post('/utilisateur/store', [UtilisateurController::class, 'store'])->name('admin.user-store');
+
+    Route::get('/categories', [CategorieController::class, 'index'])->name('admin.categorie-list');
+    Route::get('/categories_search', [CategorieController::class, 'index'])->name('admin.categorie-search');
+    Route::post('/categories/store', [CategorieController::class, 'store'])->name('admin.categorie-store');
+    Route::put('/categories/{id}/update', [CategorieController::class, 'update'])->name('admin.categorie-update');
+    Route::delete('/categories/{id}/destroy', [CategorieController::class, 'destroy'])->name('admin.categorie-destroy');
+
+    Route::get('/articles', [ArticleController::class, 'index'])->name('admin.article-list');
+    Route::get('/articles_search', [ArticleController::class, 'index'])->name('admin.article-search');
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('admin.article-create');
+    Route::post('/articles/store', [ArticleController::class, 'store'])->name('admin.article-store');
+    Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('admin.article-edit');
+    Route::put('/articles/{id}/update', [ArticleController::class, 'update'])->name('admin.article-update');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {

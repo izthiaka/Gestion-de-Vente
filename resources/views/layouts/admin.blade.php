@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
+    <head>
         <meta charset="utf-8" />
         <title>Dashboard | Gestion de vente</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
         <!-- Bootstrap select pluings -->
-        <link href="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.css')}}" />
 
         <!-- c3 plugin css -->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/c3/c3.min.css')}}">
@@ -24,6 +24,8 @@
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css"  id="app-stylesheet" />
 
+        <!-- Toastr css -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
     </head>
 
     <body>
@@ -262,6 +264,20 @@
         <script src="{{asset('assets/js/app.min.js')}}"></script>
 
         @yield('script')
+
+        <!-- Toast js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+            @if(Session::has('success'))
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.newestOnTop = true;
+            toastr.success("{{ Session::get('success') }}");
+            @elseif(Session::has('warning'))
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.newestOnTop = true;
+            toastr.warning("{{ Session::get('warning') }}");
+            @endif
+        </script>
 
     </body>
 
