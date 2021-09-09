@@ -17,7 +17,13 @@
                     <tbody>
                         @foreach ($articles as $key => $item)
                             <tr>
-                                <th scope="row">{{$key+1}}</th>
+                                <td class="table-user">
+                                    @if ($item->photo_article != null)
+                                        <img src="{{ $item->photo_article }}" alt="{{ $item->nom_article }}" class="mr-2 rounded-circle">
+                                    @else
+                                        <img src="{{asset('assets/images/logo-sm.png')}}" alt="table-user" class="mr-2 rounded-circle">
+                                    @endif
+                                </td>
                                 <td class="text-center">{{$item->nom_article}}</td>
                                 <td class="text-center font-weight-bold">{{number_format($item->prix_article, 0, ',', ' ')}} Fcfa</td>
                                 <td class="text-center text-uppercase">{{$item->categorie->nom_categorie}}</td>

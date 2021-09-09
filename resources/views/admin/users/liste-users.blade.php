@@ -19,7 +19,13 @@
                     <tbody>
                         @foreach ($users as $key => $item)
                             <tr>
-                                <th scope="row">{{$key+1}}</th>
+                                <td class="table-user">
+                                    @if ($item->photo_profil != null)
+                                        <img src="{{ $item->photo_profil }}" alt="{{ $item->login }}" class="mr-2 rounded-circle">
+                                    @else
+                                        <img src="{{asset('assets/images/logo-sm.png')}}" alt="table-user" class="mr-2 rounded-circle">
+                                    @endif
+                                </td>
                                 <td class="text-center">{{$item->name}}</td>
                                 <td class="text-center">{{$item->login}}</td>
                                 <td class="text-center">{{$item->email}}</td>
