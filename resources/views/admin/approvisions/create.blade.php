@@ -73,7 +73,7 @@
                                                 <select class="col-12 selectpicker articles" id="articles" name="articles" multiple data-live-search="true" title="Choisissez les articles">
                                                     <option disabled>Choisissez les articles</option>
                                                     @foreach ($articles as $item)
-                                                        <option value="{{$item->id}}">{{$item->nom_article}}({{$item->quantite_article}})</option>
+                                                        <option value="{{$item->id}}">{{$item->nom_article}}-{{$item->quantite_article}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -146,14 +146,14 @@
 
     for (let i=0; i<collection.length; i++) {
         var stock = collection[i].label;
-        console.log("value : "+stock);
-        console.log("id-value : "+collection[i].value);
+        var qu = stock.split('-').pop();
+        var max = parseInt(qu);
         output += "<tr>"+
                         "<td class='text-center font-weight-bold'>"+
                             collection[i].label+
                         "</td>"+
                         "<td class='text-center'>"+
-                            "<input type='number' min='1' max='2'>"+
+                            "<input type='number' min='1' max='"+max+"'>"+
                         "</td>"+
                     "</tr>";
     }
