@@ -11,6 +11,12 @@
             </a>
         </li>
 
+        <li>
+            <a href="{{route('admin.approvisionnement-list')}}">
+                <i class="fe-share-2"></i>
+                <span> Approvisionnement </span>
+            </a>
+        </li>
         {{-- <li>
             <a href="javascript: void(0);">
                 <i class="fe-grid"></i>

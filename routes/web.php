@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApprovisionnementController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Admin\CategorieController;
@@ -63,6 +64,10 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::post('/articles/store', [ArticleController::class, 'store'])->name('admin.article-store');
     Route::get('/articles/{id}/edit', [ArticleController::class, 'edit'])->name('admin.article-edit');
     Route::put('/articles/{id}/update', [ArticleController::class, 'update'])->name('admin.article-update');
+
+    Route::get('/approvisionnement', [ApprovisionnementController::class, 'index'])->name('admin.approvisionnement-list');
+    Route::get('/approvisionnement_search', [ApprovisionnementController::class, 'index'])->name('admin.approvisionnement-search');
+    Route::get('/approvisionnement/create', [ApprovisionnementController::class, 'create'])->name('admin.approvisionnement-create');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {

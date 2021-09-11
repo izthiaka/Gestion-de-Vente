@@ -15,6 +15,12 @@ class CreateApprovisionnementsTable extends Migration
     {
         Schema::create('approvisionnements', function (Blueprint $table) {
             $table->id();
+            $table->integer('agent_id')->unsigned();
+            $table->integer('article_id')->unsigned();
+            $table->integer('quantite_approv_depart');
+            $table->integer('quantite_approv_retour')->nullable();
+            $table->boolean('activite');
+            $table->boolean('confirmed');
             $table->timestamps();
         });
     }
