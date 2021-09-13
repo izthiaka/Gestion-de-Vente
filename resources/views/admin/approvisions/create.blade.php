@@ -53,8 +53,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form class="form-horizontal" action="#" method="POST" enctype="multipart/form-data">
-                                    @csrf
+                                <form class="form-horizontal" enctype="multipart/form-data">
+                                    {{-- @csrf --}}
                                     <div class=" mt-2" id="info_student">
                                         <div class="row">
                                             <p class="font-weight-semibold">
@@ -95,9 +95,9 @@
                                     <br>
                                     <div class="row text-right mt-2" id="validation">
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary">
+                                            <a onclick="guardarNumeros()" class="btn btn-primary">
                                                 <i class="mdi mdi-upload-outline"></i>
-                                                Valider</button>
+                                                Valider</a>
                                             <a href="{{route('admin.approvisionnement-list')}}" class="btn width-xs btn-dark text-white">
                                                 <i class="mdi mdi-format-clear"></i>
                                                 Annuler
@@ -133,33 +133,40 @@
     let outputBox = document.getElementById("output");
 
     orderButton.addEventListener("click", function() {
-    let collection = itemList.selectedOptions;
-    let output = '<div class="table-responsive">'+
-                    '<table class="table m-0">'+
-                        '<thead>'+
-                            '<tr>'+
-                                '<th class="text-center font-weight-bold">Article</th>'+
-                                '<th class="text-center font-weight-bold">Quantite</th>'+
-                            '</tr>'+
-                        '</thead>'+
-                        '<tbody>';
+        let collection = itemList.selectedOptions;
+        let output = '<div class="table-responsive">'+
+                        '<table class="table m-0">'+
+                            '<thead>'+
+                                '<tr>'+
+                                    '<th class="text-center font-weight-bold">Article</th>'+
+                                    '<th class="text-center font-weight-bold">Quantite</th>'+
+                                '</tr>'+
+                            '</thead>'+
+                            '<tbody>';
 
-    for (let i=0; i<collection.length; i++) {
-        var stock = collection[i].label;
-        var qu = stock.split('-').pop();
-        var max = parseInt(qu);
-        output += "<tr>"+
-                        "<td class='text-center font-weight-bold'>"+
-                            collection[i].label+
-                        "</td>"+
-                        "<td class='text-center'>"+
-                            "<input type='number' min='1' max='"+max+"'>"+
-                        "</td>"+
-                    "</tr>";
-    }
+        for (let i=0; i<collection.length; i++) {
+            var stock = collection[i].label;
+            var qu = stock.split('-').pop();
+            var max = parseInt(qu);
+            output += "<tr>"+
+                            "<td class='text-center font-weight-bold' name='articles[]'>"+
+                                collection[i].label+
+                            "</td>"+
+                            "<td class='text-center'>"+
+                                "<input type='number' class='article_quantites' id='article_quantites[]' min='1' max='"+max+"'>"+
+                            "</td>"+
+                        "</tr>";
+        }
 
-    outputBox.innerHTML = output+'</tbody></table></div>';
+        outputBox.innerHTML = output+'</tbody></table></div>';
     }, false);
+
+    var items = [];
+    function guardarNumeros() {
+        boxvalue = document.getElementById('article_quantites[]').value;
+        items.push(boxvalue);
+        console.log('tableau : ',items);
+    }
 </script>
 @endsection
 
