@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\ApprovisionnementController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Admin\CategorieController;
-
+use App\Http\Controllers\Agent\UserController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
 use Illuminate\Support\Facades\Route;
@@ -75,4 +75,8 @@ Route::middleware(['auth', 'isAG'])->group(function() {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('agent.dashboard');
     Route::get('/change-password', [ChangePasswordController::class, 'firstPassword'])->name('agent.change-password');
     Route::post('/form-change-password', [ChangePasswordController::class, 'update_password'])->name('agent.form-change-password');
+
+    Route::get('/profil', [UserController::class, 'profil'])->name('agent.profil');
+    Route::put('/profil_update', [UserController::class, 'update_profile'])->name('agent.auth-update_profile');
+    Route::put('/profil_password', [UserController::class, 'update_password'])->name('agent.auth-update_password');
 });

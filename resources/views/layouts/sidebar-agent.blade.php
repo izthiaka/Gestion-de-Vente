@@ -23,21 +23,7 @@
         <li>
             <a href="{{route('admin.article-list')}}">
                 <i class="fe-package"></i>
-                <span> Articles </span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{route('admin.categorie-list')}}">
-                <i class="fe-command"></i>
-                <span> Categories </span>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{route('admin.user-list')}}">
-                <i class="fe-users"></i>
-                <span> Utilisateurs </span>
+                <span> clients </span>
             </a>
         </li>
     </ul>

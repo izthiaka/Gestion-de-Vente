@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.agent')
 @section('content')
 <div class="content">
 
@@ -11,7 +11,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('agent.dashboard')}}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Profil</li>
                         </ol>
                     </div>
@@ -32,7 +32,7 @@
 
                     <h4 class="mb-0">{{ $profile->name }}</h4>
                     <p class="text-muted">
-                        Administrateur
+                        AGENT
                     </p>
 
                     <div class="text-left mt-3">
@@ -65,7 +65,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="aboutme">
 
-                            <form method="POST" action="{{route('admin.auth-update_profile')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('agent.auth-update_profile')}}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle mr-1"></i> Informations personnelles</h5>
@@ -161,7 +161,7 @@
                                 @endif
                             </div>
 
-                            <form method="POST" id="identicalForm" action="{{route('admin.auth-update_password')}}">
+                            <form method="POST" id="identicalForm" action="{{route('agent.auth-update_password')}}">
                                 @csrf
                                 @method('PUT')
                                 <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle mr-1"></i> Mot de passe </h5>

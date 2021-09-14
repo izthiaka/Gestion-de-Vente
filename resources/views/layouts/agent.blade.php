@@ -155,7 +155,7 @@
                             </div>
 
                             <!-- item-->
-                            <a href="{{route('admin.profil')}}" class="dropdown-item notify-item">
+                            <a href="{{route('agent.profil')}}" class="dropdown-item notify-item">
                                 <i class="fe-user"></i>
                                 <span>Profil</span>
                             </a>
@@ -221,7 +221,7 @@
                 <div class="slimscroll-menu">
 
                     <!--- Sidemenu -->
-                    @include('layouts.sidebar-admin')
+                    @include('layouts.sidebar-agent')
                     <!-- End Sidebar -->
 
                     <div class="clearfix"></div>
