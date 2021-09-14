@@ -81,7 +81,7 @@
                         <div class="media">
                             <div class="media-body wigdet-two-content">
                                 <p class="m-0 text-white text-uppercase" title="New Downloads">Articles</p>
-                                <h2 class="text-white"><span data-plugin="counterup">854</span></h2>
+                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['article']}}</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
                                 <i class="mdi mdi-package-variant-closed font-22 avatar-title text-white"></i>
