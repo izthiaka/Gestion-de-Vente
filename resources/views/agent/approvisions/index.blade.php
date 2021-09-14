@@ -52,6 +52,68 @@
     </div>
 </div>
 
+@foreach ($approvisionnement as $item)
+
+
+    <!-- Modal modalStatutValid -->
+    <div class="modal fade" id="modalStatutValid{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header bg-light">
+                    <h5 class="text-uppercase" id="updateModalLongTitle">
+                        Validation de l'approvisionnement
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route("agent.approvisionnement-valid", [$item->id]) }}" method="post">
+                    @csrf
+                    @method('GET')
+                    <div class="modal-body" >
+                        <p class="text-center" style="font-size:16px">
+                            Etes-vous sûr de vouloir approuver cet approvisionnement ?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success mr-1">Valider</button>
+                        <button type="close" class="btn btn-info" data-dismiss="modal" >Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal modalStatutRefuse -->
+    <div class="modal fade" id="modalStatutRefuse{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header bg-light">
+                    <h5 class="text-uppercase" id="updateModalLongTitle">
+                        Refus de l'approvisionnement
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route("agent.approvisionnement-refuse", [$item->id]) }}" id="updateUserForm" method="post">
+                    @csrf
+                    @method('GET')
+                    <div class="modal-body" >
+                        <p class="text-center" style="font-size:16px">
+                            Etes-vous sûr de vouloir refuser cet approvisionnement ?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger mr-1">Refuser</button>
+                        <button type="close" class="btn btn-info" data-dismiss="modal" >Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 @endsection
 
 @section('script')

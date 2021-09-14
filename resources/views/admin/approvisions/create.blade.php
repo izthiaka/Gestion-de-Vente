@@ -46,7 +46,6 @@
                                                 @foreach ($users as $item)
                                                     <option value="{{$item->id}}">{{$item->name}} ({{$item->login}})</option>
                                                 @endforeach
-
                                             </select>
                                         </div>
                                     </div>

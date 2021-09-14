@@ -20,6 +20,8 @@ class ApprovisionnementController extends Controller
     public function index(Request $request)
     {
         $approvisionnement = Approvisionnement::paginate(10);
+        $users = User::where('role_id', 2)->get();
+        $articles = Article::where('quantite_article', '>', 0)->get();
 
         if($request->ajax()){
             $query = $request->recherche;
@@ -32,7 +34,7 @@ class ApprovisionnementController extends Controller
                 ->paginate(10);
             return view('admin.approvisions.liste-approvisions', compact('approvisionnement'))->render();
         }
-        return view('admin.approvisions.index', compact('approvisionnement'));
+        return view('admin.approvisions.index', compact('approvisionnement', 'users', 'articles'));
     }
 
     /**
@@ -66,7 +68,7 @@ class ApprovisionnementController extends Controller
                 'agent_id' => $request->agent_id,
                 'article_id' => $article,
                 'quantite_approv_depart' => $request->article_quantites[$key_a],
-                'created_at' => now(),
+                'created_at' => null,
                 'activite' => 0,
                 'updated_at' => null,
             ]);
@@ -74,6 +76,48 @@ class ApprovisionnementController extends Controller
         $approvisionnement->save();
 
         Session::flash('success', 'l\'approvisionnement a été crée avec succès');
+        return redirect()->route('admin.approvisionnement-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function UpdateRefused(Request $request, $id)
+    {
+        $this->validate($request, [
+            'agent_id' => 'required',
+            'article_id' => 'required',
+            'quantite_approv_depart' => 'required',
+        ]);
+
+        $approv = Approvisionnement::find($id);
+
+        $approv->agent_id = $request->agent_id;
+        $approv->article_id = $request->article_id;
+        $approv->quantite_approv_depart = $request->quantite_approv_depart;
+        $approv->activite = 0;
+        $approv->confirmed = null;
+        $approv->created_at = now();
+        $approv->updated_at = null;
+        $approv->save();
+
+        Session::flash('success', 'Approvisionnement en revu avec succés');
+        return redirect()->route('admin.approvisionnement-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function delete($id)
+    {
+        $approv = Approvisionnement::find($id);
+        $approv->delete();
+
+        Session::flash('success', 'Approvisionnement a été supprimé avec succés');
         return redirect()->route('admin.approvisionnement-list');
     }
 }

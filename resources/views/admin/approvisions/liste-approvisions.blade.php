@@ -64,12 +64,12 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->confirmed == 0)
-                                        <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-purple">
+                                        <button class="btn btn-xs btn-purple" data-toggle="modal" data-target="#modalEditArticle{{$item->id}}">
                                             <i class="mdi mdi-pencil"></i>
-                                        </a>
-                                        <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-danger">
+                                        </button>
+                                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalDeleteApprov{{$item->id}}">
                                             <i class="mdi mdi-delete"></i>
-                                        </a>
+                                        </button>
                                     @endif
                                 </td>
                             </tr>

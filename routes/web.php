@@ -70,6 +70,8 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::get('/approvisionnement_search', [ApprovisionnementController::class, 'index'])->name('admin.approvisionnement-search');
     Route::get('/approvisionnement/create', [ApprovisionnementController::class, 'create'])->name('admin.approvisionnement-create');
     Route::post('/approvisionnement/store', [ApprovisionnementController::class, 'store'])->name('admin.approvisionnement-store');
+    Route::put('/approvisionnement/{id}/update', [ApprovisionnementController::class, 'UpdateRefused'])->name('admin.approvisionnement-update');
+    Route::delete('/approvisionnement/{id}/delete', [ApprovisionnementController::class, 'delete'])->name('admin.approvisionnement-delete');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {
@@ -88,4 +90,6 @@ Route::middleware(['auth', 'isAG'])->group(function() {
 
     Route::get('/approvisionnement', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-list');
     Route::get('/approvisionnement_search', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-search');
+    Route::get('/approvisionnement/{id}/valid', [ApprovisionnemntController::class, 'validated'])->name('agent.approvisionnement-valid');
+    Route::get('/approvisionnement/{id}/refuse', [ApprovisionnemntController::class, 'Refused'])->name('agent.approvisionnement-refuse');
 });

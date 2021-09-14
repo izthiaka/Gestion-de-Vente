@@ -26,7 +26,6 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th class="text-center font-weight-bold">Article</th>
                             <th class="text-center font-weight-bold">Quantité de depart</th>
                             <th class="text-center font-weight-bold">Date/heure de depart</th>
@@ -45,23 +44,27 @@
                                 <td class="text-center">{{$item->quantite_approv_retour}}</td>
                                 <td class="text-center text-uppercase">{{$item->updated_at}}</td>
                                 <td class="text-center">
-                                    @if ($item->activite == 1)
-                                        <button class="btn btn-info btn-xs">en cours</button>
+                                    @if ($item->activite == 0 || $item->activite == 2)
+                                        <button class="btn btn-warning btn-xs"><i class="mdi mdi-trending-neutral"></i></button>
                                     @endif
-                                    @if ($item->activite == 0)
-                                        <button class="btn btn-success btn-xs">terminer</button>
+                                    @if ($item->activite == 1)
+                                        <button class="btn btn-success btn-xs"><i class="mdi mdi-check"></i></button>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-success">
-                                        <i class="mdi mdi-check-underline-circle"></i>
-                                    </a>
-                                    <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-purple">
-                                        <i class="mdi mdi-close-circle"></i>
-                                    </a>
-                                    <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalDeleteArticle{{$item->id}}">
-                                        <i class="mdi mdi-content-save-move"></i>
-                                    </button>
+                                    @if ($item->activite != 1 && $item->confirmed == 0)
+                                        <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatutValid{{$item->id}}">
+                                            <i class="mdi mdi-check-underline-circle"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatutRefuse{{$item->id}}">
+                                            <i class="mdi mdi-close-circle"></i>
+                                        </button>
+                                    @endif
+                                    @if ($item->activite == 1 && $item->confirmed == 1)
+                                        <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalDeleteArticle{{$item->id}}">
+                                            <i class="mdi mdi-content-save-move"></i>
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Approvisionnement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ApprovisionnemntController extends Controller
 {
@@ -32,5 +33,42 @@ class ApprovisionnemntController extends Controller
             return view('agent.approvisions.liste-approvisions', compact('approvisionnement'))->render();
         }
         return view('agent.approvisions.index', compact('approvisionnement'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function validated($id)
+    {
+        $approv = Approvisionnement::find($id);
+
+        $approv->activite = 1;
+        $approv->confirmed = 1;
+        $approv->created_at = now();
+        $approv->updated_at = null;
+        $approv->save();
+
+        Session::flash('success', 'Validation avec succès');
+        return redirect()->route('agent.approvisionnement-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function Refused($id)
+    {
+        $approv = Approvisionnement::find($id);
+
+        $approv->activite = 2;
+        $approv->confirmed = 0;
+        $approv->updated_at = null;
+        $approv->save();
+
+        Session::flash('success', 'Approvisionnement en revision');
+        return redirect()->route('agent.approvisionnement-list');
     }
 }
