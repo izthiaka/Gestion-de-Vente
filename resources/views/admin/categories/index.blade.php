@@ -57,65 +57,65 @@
 
 @foreach ($categories as $item)
 
-<!-- Modal Update Category -->
-<div class="modal fade" id="modalEditCategory{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-light">
-                <h5 class="text-uppercase" id="updateModalLongTitle">Modifier la categorie ({{$item->nom_categorie}})</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{route('admin.categorie-update', [$item->id])}}" method="post">
-                @csrf
-                @method('PUT')
-                <div class="modal-body" >
-                    <div class="form-group">
-                        <label>Nom</label>
-                        <input type="text" value="{{$item->nom_categorie}}" class="form-control @error('nom_categorie') is-invalid @enderror" name="nom_categorie" data-toggle="flatpicker" placeholder="Nom categorie" required>
-                        @error('nom_categorie')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+    <!-- Modal Update Category -->
+    <div class="modal fade" id="modalEditCategory{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="text-uppercase" id="updateModalLongTitle">Modifier la categorie ({{$item->nom_categorie}})</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('admin.categorie-update', [$item->id])}}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body" >
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input type="text" value="{{$item->nom_categorie}}" class="form-control @error('nom_categorie') is-invalid @enderror" name="nom_categorie" data-toggle="flatpicker" placeholder="Nom categorie" required>
+                            @error('nom_categorie')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success mr-1">Modifier</button>
-                    <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Delete Category -->
-<div class="modal fade" id="modalDeleteCategory{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header bg-light">
-                <h5 class="text-uppercase" id="updateModalLongTitle">
-                    Suppression catégorie
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success mr-1">Modifier</button>
+                        <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
+                    </div>
+                </form>
             </div>
-            <form action="{{ route("admin.categorie-destroy", [$item->id]) }}" id="updateUserForm" method="post">
-                @csrf
-                @method('DELETE')
-                <div class="modal-body" >
-                    <p class="text-center" style="font-size:16px">
-                        Etes-vous sûr de vouloir supprimer cette categorie ?
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger mr-1">Supprimer</button>
-                    <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+
+    <!-- Modal Delete Category -->
+    <div class="modal fade" id="modalDeleteCategory{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header bg-light">
+                    <h5 class="text-uppercase" id="updateModalLongTitle">
+                        Suppression catégorie
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route("admin.categorie-destroy", [$item->id]) }}" id="updateUserForm" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body" >
+                        <p class="text-center" style="font-size:16px">
+                            Etes-vous sûr de vouloir supprimer cette categorie ?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger mr-1">Supprimer</button>
+                        <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endforeach
 
 <!-- Modal Create Category -->

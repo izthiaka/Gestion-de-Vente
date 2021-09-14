@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApprovisionnementController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Agent\ApprovisionnemntController;
 use App\Http\Controllers\Agent\UserController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
@@ -79,4 +80,12 @@ Route::middleware(['auth', 'isAG'])->group(function() {
     Route::get('/profil', [UserController::class, 'profil'])->name('agent.profil');
     Route::put('/profil_update', [UserController::class, 'update_profile'])->name('agent.auth-update_profile');
     Route::put('/profil_password', [UserController::class, 'update_password'])->name('agent.auth-update_password');
+
+    Route::get('/client', [UserController::class, 'index'])->name('agent.client-list');
+    Route::post('/client/store', [UserController::class, 'store_client'])->name('agent.client-store');
+    Route::put('/client/{id}/update', [UserController::class, 'update_client'])->name('agent.client-update');
+
+    Route::get('/approvisionnement', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-list');
+    Route::get('/approvisionnement_search', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-search');
+    Route::get('/approvisionnement/create', [ApprovisionnementController::class, 'create'])->name('agent.approvisionnement-create');
 });

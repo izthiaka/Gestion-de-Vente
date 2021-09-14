@@ -5,23 +5,30 @@
         <li class="menu-title">Tableau de Bord</li>
 
         <li>
-            <a href="{{route('admin.dashboard')}}">
+            <a href="{{route('agent.dashboard')}}">
                 <i class="fe-airplay"></i>
                 <span> Dashboard </span>
             </a>
         </li>
 
         <li>
-            <a href="{{route('admin.approvisionnement-list')}}">
+            <a href="{{route('agent.approvisionnement-list')}}">
                 <i class="fe-share-2"></i>
                 <span> Approvisionnement </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fe-dollar-sign"></i>
+                <span> Vente </span>
             </a>
         </li>
 
         <li class="menu-title mt-2">Paramétres</li>
 
         <li>
-            <a href="{{route('admin.article-list')}}">
+            <a href="{{route('agent.client-list')}}">
                 <i class="fe-package"></i>
                 <span> clients </span>
             </a>
