@@ -87,7 +87,7 @@ class ApprovisionnementController extends Controller
     public function UpdateRefused(Request $request, $id)
     {
         $this->validate($request, [
-            'agent_id' => 'required',
+            'quantite_approv_retour' => 'required',
             'article_id' => 'required',
             'quantite_approv_depart' => 'required',
         ]);
@@ -115,6 +115,11 @@ class ApprovisionnementController extends Controller
     public function delete($id)
     {
         $approv = Approvisionnement::find($id);
+
+            $article = Article::find($approv->article_id);
+            $article->quantite_article = $article->quantite_article + $approv->quantite_approv_depart;
+            $article->save();
+
         $approv->delete();
 
         Session::flash('success', 'Approvisionnement a été supprimé avec succés');

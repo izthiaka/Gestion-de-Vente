@@ -112,6 +112,44 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal RetourSave -->
+    <div class="modal fade" id="RetourSave{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="text-uppercase" id="updateModalLongTitle">Retour de l'approvisionnement ({{$item->article->nom_article}})</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{route('agent.approvisionnement-RetourSave', [$item->id])}}" method="post">
+                    @csrf
+                    @method('GET')
+                    <div class="modal-body" >
+                        <div class="form-group">
+                            <label>Quantite de départ</label>
+                            <input type="number" class="form-control" name="quantite_approv_depart" value="{{$item->quantite_approv_depart}}" readonly>
+                            @error('quantite_approv_depart')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Quantite de retour</label>
+                            <input type="number" class="form-control" name="quantite_approv_retour" max="{{$item->quantite_approv_depart}}">
+                            @error('quantite_approv_retour')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success mr-1">Enregister</button>
+                        <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endforeach
 
 @endsection

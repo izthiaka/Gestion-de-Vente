@@ -19,6 +19,12 @@
                             </button>
                             Validé
                         </div>
+                        <div class="col-3">
+                            <button class="btn btn-info waves-effect waves-light btn-xs">
+                                <i class="mdi mdi-content-save-move"></i>
+                            </button>
+                            Bouclé
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +56,11 @@
                                     @if ($item->activite == 1)
                                         <button class="btn btn-success btn-xs"><i class="mdi mdi-check"></i></button>
                                     @endif
+                                    @if ($item->activite == 3)
+                                        <button class="btn btn-info waves-effect waves-light btn-xs">
+                                            <i class="mdi mdi-content-save-move"></i>
+                                        </button>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     @if ($item->activite != 1 && $item->confirmed == 0)
@@ -60,8 +71,13 @@
                                             <i class="mdi mdi-close-circle"></i>
                                         </button>
                                     @endif
+                                    @if ($item->activite == 3)
+                                        <button class="btn btn-info waves-effect waves-light btn-xs">
+                                            <i class="mdi mdi-content-save-move"></i>
+                                        </button>
+                                    @endif
                                     @if ($item->activite == 1 && $item->confirmed == 1)
-                                        <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#modalDeleteArticle{{$item->id}}">
+                                        <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#RetourSave{{$item->id}}">
                                             <i class="mdi mdi-content-save-move"></i>
                                         </button>
                                     @endif

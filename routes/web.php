@@ -92,4 +92,5 @@ Route::middleware(['auth', 'isAG'])->group(function() {
     Route::get('/approvisionnement_search', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-search');
     Route::get('/approvisionnement/{id}/valid', [ApprovisionnemntController::class, 'validated'])->name('agent.approvisionnement-valid');
     Route::get('/approvisionnement/{id}/refuse', [ApprovisionnemntController::class, 'Refused'])->name('agent.approvisionnement-refuse');
+    Route::get('/approvisionnement/{id}/save', [ApprovisionnemntController::class, 'RetourSave'])->name('agent.approvisionnement-RetourSave');
 });

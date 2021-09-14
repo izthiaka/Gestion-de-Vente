@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
 use App\Models\Approvisionnement;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -69,6 +70,31 @@ class ApprovisionnemntController extends Controller
         $approv->save();
 
         Session::flash('success', 'Approvisionnement en revision');
+        return redirect()->route('agent.approvisionnement-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function RetourSave(Request $request, $id)
+    {
+        $this->validate($request, [
+            'quantite_approv_retour' => 'required',
+        ]);
+
+        $approv = Approvisionnement::find($id);
+            $article = Article::find($approv->article_id);
+            $article->quantite_article = $article->quantite_article + $request->quantite_approv_retour;
+            $article->save();
+
+        $approv->quantite_approv_retour = $request->quantite_approv_retour;
+        $approv->activite = 3;
+        $approv->updated_at = now();
+        $approv->save();
+
+        Session::flash('success', 'Retour d\'article enrégistré avec succés.');
         return redirect()->route('agent.approvisionnement-list');
     }
 }
