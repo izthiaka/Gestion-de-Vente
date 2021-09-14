@@ -64,8 +64,8 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body wigdet-two-content">
-                                <p class="m-0 text-uppercase text-white" title="Request Per Minute">Category</p>
-                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['category']}}</span></h2>
+                                <p class="m-0 text-uppercase text-white" title="Request Per Minute">Client</p>
+                                <h2 class="text-white"><span data-plugin="counterup">{{$datas['client']}}</span></h2>
                             </div>
                             <div class="avatar-lg rounded-circle bg-soft-light ml-2 align-self-center">
                                 <i class="mdi mdi-apple-keyboard-command font-22 avatar-title text-white"></i>

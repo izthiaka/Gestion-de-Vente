@@ -32,7 +32,6 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th class="text-center font-weight-bold">Agent</th>
                             <th class="text-center font-weight-bold">Article</th>
                             <th class="text-center font-weight-bold">Quantité de depart</th>
@@ -54,19 +53,24 @@
                                 <td class="text-center text-uppercase">{{$item->updated_at}}</td>
                                 <td class="text-center">
                                     @if ($item->activite == 1)
-                                        <button class="btn btn-info btn-xs">en cours</button>
+                                        <button class="btn btn-success btn-xs"><i class="mdi mdi-check"></i></button>
+                                    @endif
+                                    @if ($item->activite == 2)
+                                        <button class="btn btn-danger btn-xs"><i class="mdi mdi-alert-circle-outline"></i></button>
                                     @endif
                                     @if ($item->activite == 0)
-                                        <button class="btn btn-success btn-xs">terminer</button>
+                                        <button class="btn btn-warning btn-xs"><i class="mdi mdi-trending-neutral"></i></button>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-purple">
-                                        <i class="mdi mdi-pencil"></i>
-                                    </a>
-                                    {{-- <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalDeleteArticle{{$item->id}}">
-                                        <i class="mdi mdi-delete"></i>
-                                    </button> --}}
+                                    @if ($item->confirmed == 0)
+                                        <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-purple">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+                                        <a href="{{route('admin.article-edit', [$item->id])}}" class="btn btn-xs btn-danger">
+                                            <i class="mdi mdi-delete"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

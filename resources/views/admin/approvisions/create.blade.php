@@ -34,27 +34,27 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label" for="eleve">Choisir l'agent à approvisionner</label>
-                                    <div class="col-md-7">
-                                        <select class="col-md-12 selectpicker eleve" data-style="btn-light btn-rounded" id="eleve" name="eleve" data-live-search="true" title="Choisissez l'agent">
-                                            <option disabled selected>Choisissez un agent</option>
-                                            @foreach ($users as $item)
-                                                <option value="{{$item->id}}">{{$item->name}} ({{$item->login}})</option>
-                                            @endforeach
+                        <form class="form-horizontal" action="{{route('admin.approvisionnement-store')}}" method="Post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label" for="agent_id">Choisir l'agent à approvisionner</label>
+                                        <div class="col-md-7">
+                                            <select class="col-md-12 selectpicker agent_id" data-style="btn-light btn-rounded" id="agent_id" name="agent_id" data-live-search="true" title="Choisissez l'agent">
+                                                <option disabled selected>Choisissez un agent</option>
+                                                @foreach ($users as $item)
+                                                    <option value="{{$item->id}}">{{$item->name}} ({{$item->login}})</option>
+                                                @endforeach
 
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form class="form-horizontal" enctype="multipart/form-data">
-                                    {{-- @csrf --}}
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class=" mt-2" id="info_student">
                                         <div class="row">
                                             <p class="font-weight-semibold">
@@ -70,7 +70,7 @@
                                         <div class="row">
                                             <div class="col-8">
                                                 <label class="col-4 col-form-label" for="articles">Articles</label><br>
-                                                <select class="col-12 selectpicker articles" id="articles" name="articles" multiple data-live-search="true" title="Choisissez les articles">
+                                                <select class="col-12 selectpicker articles" id="articles" name="articles[]" multiple data-live-search="true" title="Choisissez les articles">
                                                     <option disabled>Choisissez les articles</option>
                                                     @foreach ($articles as $item)
                                                         <option value="{{$item->id}}">{{$item->nom_article}}-{{$item->quantite_article}}</option>
@@ -95,19 +95,19 @@
                                     <br>
                                     <div class="row text-right mt-2" id="validation">
                                         <div class="col-md-12">
-                                            <a onclick="guardarNumeros()" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 <i class="mdi mdi-upload-outline"></i>
-                                                Valider</a>
+                                                Valider</button>
                                             <a href="{{route('admin.approvisionnement-list')}}" class="btn width-xs btn-dark text-white">
                                                 <i class="mdi mdi-format-clear"></i>
                                                 Annuler
                                             </a>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end row -->
+                            <!-- end row -->
+                        </form>
 
                     </div>
                     <!-- end card-body-->
@@ -153,7 +153,7 @@
                                 collection[i].label+
                             "</td>"+
                             "<td class='text-center'>"+
-                                "<input type='number' class='article_quantites' id='article_quantites[]' min='1' max='"+max+"'>"+
+                                "<input type='number' class='article_quantites' name='article_quantites[]' min='1' max='"+max+"'>"+
                             "</td>"+
                         "</tr>";
         }

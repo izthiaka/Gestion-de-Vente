@@ -69,6 +69,7 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::get('/approvisionnement', [ApprovisionnementController::class, 'index'])->name('admin.approvisionnement-list');
     Route::get('/approvisionnement_search', [ApprovisionnementController::class, 'index'])->name('admin.approvisionnement-search');
     Route::get('/approvisionnement/create', [ApprovisionnementController::class, 'create'])->name('admin.approvisionnement-create');
+    Route::post('/approvisionnement/store', [ApprovisionnementController::class, 'store'])->name('admin.approvisionnement-store');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {
@@ -87,5 +88,4 @@ Route::middleware(['auth', 'isAG'])->group(function() {
 
     Route::get('/approvisionnement', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-list');
     Route::get('/approvisionnement_search', [ApprovisionnemntController::class, 'index'])->name('agent.approvisionnement-search');
-    Route::get('/approvisionnement/create', [ApprovisionnementController::class, 'create'])->name('agent.approvisionnement-create');
 });
