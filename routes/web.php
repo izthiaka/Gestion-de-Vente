@@ -99,4 +99,6 @@ Route::middleware(['auth', 'isAG'])->group(function() {
     Route::get('/vente_search', [VenteController::class, 'index'])->name('agent.vente-search');
     Route::get('/vente/create', [VenteController::class, 'create'])->name('agent.vente-create');
     Route::post('/vente/store', [VenteController::class, 'store'])->name('agent.vente-store');
+    Route::put('/vente/{id}/update', [VenteController::class, 'UpdateVente'])->name('agent.vente-update');
+    Route::delete('/vente/{id}/delete', [VenteController::class, 'delete'])->name('agent.vente-delete');
 });

@@ -91,7 +91,7 @@ class ApprovisionnemntController extends Controller
 
         $approv->quantite_approv_retour = $request->quantite_approv_retour;
         $approv->activite = 3;
-        $approv->updated_at = now();
+        $approv->date_retour = now();
         $approv->save();
 
         Session::flash('success', 'Retour d\'article enrégistré avec succés.');

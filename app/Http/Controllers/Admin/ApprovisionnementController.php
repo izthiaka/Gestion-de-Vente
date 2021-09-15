@@ -68,10 +68,15 @@ class ApprovisionnementController extends Controller
                 'agent_id' => $request->agent_id,
                 'article_id' => $article,
                 'quantite_approv_depart' => $request->article_quantites[$key_a],
+                'quantite_restant' => $request->article_quantites[$key_a],
                 'created_at' => null,
                 'activite' => 0,
                 'updated_at' => null,
             ]);
+
+            $article = Article::find($approvisionnement->article_id);
+            $article->quantite_article = $article->quantite_article - $approvisionnement->quantite_approv_depart;
+            $article->save();
         }
         $approvisionnement->save();
 
@@ -97,6 +102,7 @@ class ApprovisionnementController extends Controller
         $approv->agent_id = $request->agent_id;
         $approv->article_id = $request->article_id;
         $approv->quantite_approv_depart = $request->quantite_approv_depart;
+        $approv->quantite_restant = $request->quantite_approv_depart;
         $approv->activite = 0;
         $approv->confirmed = null;
         $approv->created_at = now();

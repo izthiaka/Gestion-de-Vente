@@ -59,7 +59,7 @@
                                                 <select class="col-12 selectpicker articles @error('articles') is-invalid @enderror" id="articles" name="articles[]" multiple data-live-search="true" title="Choisissez les articles">
                                                     <option disabled>Choisissez l'articles</option>
                                                     @foreach ($approvisionnements as $item)
-                                                        <option value="{{$item->id}}">{{$item->article->nom_article}}-{{$item->article->quantite_article}}</option>
+                                                        <option value="{{$item->id}}">{{$item->article->nom_article}}-{{$item->quantite_restant}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -152,10 +152,12 @@
                                 </div>
                             </div>
                             <br>
+
                             <p class="sub-header mt-2">
                                 Veuillez bien vérifier les informations. Une modification ou suppression serait possible que 5 minutes aprés cette validation.
                             </p>
 
+                            <!-- option validation -->
                             <div class="row text-right mt-2 d-none" id="validation">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">

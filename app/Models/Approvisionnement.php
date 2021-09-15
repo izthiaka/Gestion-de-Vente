@@ -17,7 +17,7 @@ class Approvisionnement extends Model
     protected $fillable = [
         'agent_id', 'article_id', 'quantite_approv_depart',
         'quantite_approv_retour', 'activite', 'confirmed',
-        'created_at', 'updated_at'
+        'created_at', 'updated_at', 'quantite_restant', 'date_retour'
     ];
 
     /**

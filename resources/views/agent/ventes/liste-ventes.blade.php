@@ -27,14 +27,14 @@
                                 <td class="text-center">{{$item->article->prix_article}}</td>
                                 <td class="text-center text-uppercase">{{$item->montant_total}}</td>
                                 <td class="text-center">
-                                    @if ($item->created_at->diffInMinutes(now()) < 5)
-                                        <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalStatutValid{{$item->id}}">
-                                            <i class="mdi mdi-check-underline-circle"></i>
+                                    {{-- @if ($item->created_at->diffInMinutes(now()) < 5) --}}
+                                        <button class="btn btn-xs btn-purple" data-toggle="modal" data-target="#modalEditArticle{{$item->id}}">
+                                            <i class="mdi mdi-pencil"></i>
                                         </button>
-                                        <button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalStatutRefuse{{$item->id}}">
-                                            <i class="mdi mdi-close-circle"></i>
+                                        <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modalDeleteApprov{{$item->id}}">
+                                            <i class="mdi mdi-delete"></i>
                                         </button>
-                                    @endif
+                                    {{-- @endif --}}
                                 </td>
                             </tr>
                         @endforeach

@@ -23,6 +23,7 @@ class VenteController extends Controller
     {
         $ventes = Vente::where('agent_id', Auth::user()->id)
             ->orderBy('created_at', 'desc')->paginate(10);
+        $articles = Approvisionnement::all();
 
         if($request->ajax()){
             $query = $request->recherche;
@@ -34,7 +35,7 @@ class VenteController extends Controller
                 ->orderBy('created_at', 'desc')->paginate(10);
             return view('agent.ventes.liste-ventes', compact('ventes'))->render();
         }
-        return view('agent.ventes.index', compact('ventes'));
+        return view('agent.ventes.index', compact('ventes', 'articles'));
     }
 
     /**
@@ -49,7 +50,8 @@ class VenteController extends Controller
             [
                 ['activite', 1],
                 ['confirmed', 1],
-                ['agent_id', Auth::user()->id]
+                ['agent_id', Auth::user()->id],
+                ['quantite_restant', '>', 0]
             ]
         )->get();
         return view('agent.ventes.create', compact('approvisionnements', 'clients'));
@@ -82,6 +84,13 @@ class VenteController extends Controller
                     'montant_total' => ($article_unitaire->prix_article * $request->article_quantites[$key_a]),
                     'client_id' => $request->client_id,
                 ]);
+
+                    $article = Approvisionnement::where([
+                            ['agent_id', Auth::user()->id],
+                            ['article_id', $article]
+                        ])->orderBy('created_at', 'desc')->first();
+                $article->quantite_restant = $article->quantite_restant - $request->article_quantites[$key_a];
+                $article->save();
             }
             $vente->save();
 
@@ -111,6 +120,50 @@ class VenteController extends Controller
         }
 
         Session::flash('success', 'Vente enrégistré avec succés.');
+        return redirect()->route('agent.vente-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function UpdateVente(Request $request, $id)
+    {
+        $this->validate($request, [
+            'article_id' => 'required',
+            'quantite_article' => 'required',
+        ]);
+
+        $vente = Vente::find($id);
+
+            $article = Article::find($vente->article_id);
+
+        $vente->article_id = $request->article_id;
+        $vente->quantite_article = $request->quantite_article;
+        $vente->montant_total = ($article->prix_article * $request->quantite_article);
+        $vente->save();
+
+        Session::flash('success', 'Vente modifié avec succés');
+        return redirect()->route('agent.vente-list');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function delete($id)
+    {
+        $vente = Vente::find($id);
+
+            $approv = Approvisionnement::find($vente->article_id);
+            $approv->quantite_restant = $approv->quantite_restant + $vente->quantite_article;
+            $approv->save();
+
+        $vente->delete();
+
+        Session::flash('success', 'Vente a été supprimé avec succés');
         return redirect()->route('agent.vente-list');
     }
 }

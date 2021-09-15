@@ -19,6 +19,8 @@ class CreateApprovisionnementsTable extends Migration
             $table->integer('article_id')->unsigned();
             $table->integer('quantite_approv_depart');
             $table->integer('quantite_approv_retour')->nullable();
+            $table->integer('quantite_restant')->nullable();
+            $table->dateTime('date_retour')->nullable();
             $table->integer('activite');
             $table->boolean('confirmed')->nullable();
             $table->timestamps();

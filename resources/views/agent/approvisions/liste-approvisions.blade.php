@@ -48,7 +48,7 @@
                                 <td class="text-center">{{$item->quantite_approv_depart}}</td>
                                 <td class="text-center text-uppercase">{{$item->created_at}}</td>
                                 <td class="text-center">{{$item->quantite_approv_retour}}</td>
-                                <td class="text-center text-uppercase">{{$item->updated_at}}</td>
+                                <td class="text-center text-uppercase">{{$item->date_retour}}</td>
                                 <td class="text-center">
                                     @if ($item->activite == 0 || $item->activite == 2)
                                         <button class="btn btn-warning btn-xs"><i class="mdi mdi-trending-neutral"></i></button>

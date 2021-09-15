@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label>Quantite de retour</label>
-                            <input type="number" class="form-control" name="quantite_approv_retour" max="{{$item->quantite_approv_depart}}">
+                            <input type="number" class="form-control" name="quantite_approv_retour" value="{{$item->quantite_restant}}" readonly>
                             @error('quantite_approv_retour')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
