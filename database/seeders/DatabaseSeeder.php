@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorieSeeder::class,
             ArticleSeeder::class,
+            ClientSeeder::class,
         ]);
     }
 }

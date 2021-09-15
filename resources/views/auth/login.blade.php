@@ -15,7 +15,17 @@
                             <span><img src="{{asset('assets/images/logo-light.png')}}" alt="" height="30"></span>
                         </a>
                     </div>
-
+                    <div class="errors-container">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

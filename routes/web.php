@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Agent\ApprovisionnemntController;
 use App\Http\Controllers\Agent\UserController;
+use App\Http\Controllers\Agent\VenteController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
 use Illuminate\Support\Facades\Route;
@@ -93,4 +94,9 @@ Route::middleware(['auth', 'isAG'])->group(function() {
     Route::get('/approvisionnement/{id}/valid', [ApprovisionnemntController::class, 'validated'])->name('agent.approvisionnement-valid');
     Route::get('/approvisionnement/{id}/refuse', [ApprovisionnemntController::class, 'Refused'])->name('agent.approvisionnement-refuse');
     Route::get('/approvisionnement/{id}/save', [ApprovisionnemntController::class, 'RetourSave'])->name('agent.approvisionnement-RetourSave');
+
+    Route::get('/vente', [VenteController::class, 'index'])->name('agent.vente-list');
+    Route::get('/vente_search', [VenteController::class, 'index'])->name('agent.vente-search');
+    Route::get('/vente/create', [VenteController::class, 'create'])->name('agent.vente-create');
+    Route::post('/vente/store', [VenteController::class, 'store'])->name('agent.vente-store');
 });

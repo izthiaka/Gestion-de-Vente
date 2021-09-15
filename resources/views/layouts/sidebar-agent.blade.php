@@ -19,7 +19,7 @@
         </li>
 
         <li>
-            <a href="#">
+            <a href="{{route('agent.vente-list')}}">
                 <i class="fe-dollar-sign"></i>
                 <span> Vente </span>
             </a>

@@ -124,48 +124,48 @@
 
 @section('script')
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
 
-    let orderButton = document.getElementById("validated");
-    let itemList = document.getElementById("articles");
-    let outputBox = document.getElementById("output");
+        let orderButton = document.getElementById("validated");
+        let itemList = document.getElementById("articles");
+        let outputBox = document.getElementById("output");
 
-    orderButton.addEventListener("click", function() {
-        let collection = itemList.selectedOptions;
-        let output = '<div class="table-responsive">'+
-                        '<table class="table m-0">'+
-                            '<thead>'+
-                                '<tr>'+
-                                    '<th class="text-center font-weight-bold">Article</th>'+
-                                    '<th class="text-center font-weight-bold">Quantite</th>'+
-                                '</tr>'+
-                            '</thead>'+
-                            '<tbody>';
+        orderButton.addEventListener("click", function() {
+            let collection = itemList.selectedOptions;
+            let output = '<div class="table-responsive">'+
+                            '<table class="table m-0">'+
+                                '<thead>'+
+                                    '<tr>'+
+                                        '<th class="text-center font-weight-bold">Article</th>'+
+                                        '<th class="text-center font-weight-bold">Quantite</th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody>';
 
-        for (let i=0; i<collection.length; i++) {
-            var stock = collection[i].label;
-            var qu = stock.split('-').pop();
-            var max = parseInt(qu);
-            output += "<tr>"+
-                            "<td class='text-center font-weight-bold' name='articles[]'>"+
-                                collection[i].label+
-                            "</td>"+
-                            "<td class='text-center'>"+
-                                "<input type='number' class='article_quantites' name='article_quantites[]' min='1' max='"+max+"'>"+
-                            "</td>"+
-                        "</tr>";
+            for (let i=0; i<collection.length; i++) {
+                var stock = collection[i].label;
+                var qu = stock.split('-').pop();
+                var max = parseInt(qu);
+                output += "<tr>"+
+                                "<td class='text-center font-weight-bold' name='articles[]'>"+
+                                    collection[i].label+
+                                "</td>"+
+                                "<td class='text-center'>"+
+                                    "<input type='number' class='article_quantites' name='article_quantites[]' min='1' max='"+max+"'>"+
+                                "</td>"+
+                            "</tr>";
+            }
+
+            outputBox.innerHTML = output+'</tbody></table></div>';
+        }, false);
+
+        var items = [];
+        function guardarNumeros() {
+            boxvalue = document.getElementById('article_quantites[]').value;
+            items.push(boxvalue);
+            console.log('tableau : ',items);
         }
-
-        outputBox.innerHTML = output+'</tbody></table></div>';
-    }, false);
-
-    var items = [];
-    function guardarNumeros() {
-        boxvalue = document.getElementById('article_quantites[]').value;
-        items.push(boxvalue);
-        console.log('tableau : ',items);
-    }
-</script>
+    </script>
 @endsection
 
