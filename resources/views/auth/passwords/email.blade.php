@@ -9,7 +9,7 @@
 
                     <div class="text-center authentication-logo mb-4">
                         <a class="logo-dark">
-                            <span><img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="30"></span>
+                            <span><img src="{{asset('assets/images/jaaba.png')}}" alt="" height="75"></span>
                         </a>
                         <a class="logo-light">
                             <span><img src="{{asset('assets/images/logo-light.png')}}" alt="" height="30"></span>

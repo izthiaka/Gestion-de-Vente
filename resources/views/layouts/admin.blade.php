@@ -184,12 +184,12 @@
                 <div class="logo-box">
                     <a href="{{route('admin.dashboard')}}" class="logo text-center logo-light">
                         <span class="logo-lg">
-                            <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="20">
+                            <img src="{{asset('assets/images/jaaba.png')}}" alt="" height="45">
                             <!-- <span class="logo-lg-text-light">Codefox</span> -->
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-light">C</span> -->
-                            <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="24">
+                            <img src="{{asset('assets/images/jaaba-sm.png')}}" alt="" height="45">
                         </span>
                     </a>
                     <a href="{{route('admin.dashboard')}}" class="logo text-center logo-dark">
@@ -199,7 +199,7 @@
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">C</span> -->
-                            <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="24">
+                            <img src="{{asset('assets/images/jaaba-sm.png')}}" alt="" height="45">
                         </span>
                     </a>
                 </div>

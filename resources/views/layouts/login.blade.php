@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    
+
 <head>
         <meta charset="utf-8" />
         <title>Login | Gestion de vente</title>
@@ -24,9 +24,10 @@
     </head>
 
     <body class="authentication-bg">
+
         @yield('content')
         <!-- end page -->
-    
+
 
         <!-- Vendor js -->
         <script src="{{asset('assets/js/vendor.min.js')}}"></script>
@@ -36,7 +37,7 @@
 
         <!-- App js -->
         <script src="{{asset('assets/js/app.min.js')}}"></script>
-        
+
     </body>
 
 </html>
