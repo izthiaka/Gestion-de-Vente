@@ -133,22 +133,22 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Article</th>
-                                    <th>Montant total</th>
-                                    <th>Vendu à</th>
-                                    <th>Numéro Tel</th>
-                                    <th>Vendu par</th>
+                                    <th class="text-center">Article</th>
+                                    <th class="text-center">Montant total</th>
+                                    <th class="text-center">Vendu à</th>
+                                    <th class="text-center">Numéro Tel</th>
+                                    <th class="text-center">Vendu par</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($ventes_recentes as $key => $item)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$item->article->nom_article}}</td>
-                                            <td class="font-weight-bold">{{number_format($item->montant_total, 0, ',', ' ')}} Fcfa</td>
-                                            <td>{{$item->client->prenom_nom}}</td>
-                                            <td>{{$item->client->telephone}}</td>
-                                            <td>{{$item->agent->name}}</td>
+                                            <td class="text-center">{{$item->article->nom_article}}</td>
+                                            <td class="text-center font-weight-bold">{{number_format($item->montant_total, 0, ',', ' ')}} Fcfa</td>
+                                            <td class="text-center">{{$item->client->prenom_nom}}</td>
+                                            <td class="text-center">{{$item->client->telephone}}</td>
+                                            <td class="text-center font-weight-bold">{{$item->agent->name}}</td>
                                         </tr>
                                     @endforeach
 
