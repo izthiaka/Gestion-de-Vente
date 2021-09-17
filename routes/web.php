@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ApprovisionnementController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UtilisateurController;
 use App\Http\Controllers\Admin\CategorieController;
+use App\Http\Controllers\Admin\ListeVenteController;
 use App\Http\Controllers\Agent\ApprovisionnemntController;
 use App\Http\Controllers\Agent\UserController;
 use App\Http\Controllers\Agent\VenteController;
@@ -73,6 +74,11 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::post('/approvisionnement/store', [ApprovisionnementController::class, 'store'])->name('admin.approvisionnement-store');
     Route::put('/approvisionnement/{id}/update', [ApprovisionnementController::class, 'UpdateRefused'])->name('admin.approvisionnement-update');
     Route::delete('/approvisionnement/{id}/delete', [ApprovisionnementController::class, 'delete'])->name('admin.approvisionnement-delete');
+
+    Route::get('/vente', [ListeVenteController::class, 'index'])->name('admin.vente-list');
+    Route::get('/vente_search', [ListeVenteController::class, 'index'])->name('admin.vente-search');
+    Route::put('/vente/{id}/update', [ListeVenteController::class, 'UpdateVente'])->name('admin.vente-update');
+    Route::delete('/vente/{id}/delete', [ListeVenteController::class, 'delete'])->name('admin.vente-delete');
 });
 
 Route::middleware(['auth', 'isAG'])->group(function() {

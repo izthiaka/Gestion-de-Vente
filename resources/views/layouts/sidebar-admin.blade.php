@@ -14,7 +14,14 @@
         <li>
             <a href="{{route('admin.approvisionnement-list')}}">
                 <i class="fe-share-2"></i>
-                <span> Approvisionnement </span>
+                <span> Approvisionnements </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{route('admin.vente-list')}}">
+                <i class="fe-dollar-sign"></i>
+                <span> Ventes </span>
             </a>
         </li>
 
