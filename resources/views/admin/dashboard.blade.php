@@ -98,10 +98,11 @@
             <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title mb-3">Last 30 days statistics</h4>
+                        <h4 class="header-title mb-3">Top 5 vendeurs</h4>
 
                         <div dir="ltr">
-                            <div id="donut-chart"></div>
+                            {!! $chart->container() !!}
+                            {{-- <div id="donut-chart"></div> --}}
                         </div>
                     </div>
                 </div>
@@ -111,7 +112,8 @@
                     <div class="card-body">
                         <h4 class="header-title mb-3">Total Revenue share</h4>
                         <div dir="ltr">
-                            <div id="combine-chart"></div>
+                            {!! $line->container() !!}
+                            {{-- <div id="combine-chart"></div> --}}
                         </div>
                     </div>
                 </div>
@@ -131,70 +133,24 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Project Name</th>
-                                    <th>Start Date</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                    <th>Assign</th>
+                                    <th>Article</th>
+                                    <th>Montant total</th>
+                                    <th>Vendu à</th>
+                                    <th>Numéro Tel</th>
+                                    <th>Vendu par</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Codefox Admin v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge badge-info">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Codefox Frontend v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge badge-success">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Codefox Admin v1.1</td>
-                                        <td>01/05/2017</td>
-                                        <td>10/05/2017</td>
-                                        <td><span class="badge badge-pink">Pending</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Codefox Frontend v1.1</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge badge-purple">Work in Progress</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Codefox Admin v1.3</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge badge-warning">Coming soon</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Codefox Admin v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge badge-info">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Codefox Frontend v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge badge-success">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
+                                    @foreach ($ventes_recentes as $key => $item)
+                                        <tr>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{$item->article->nom_article}}</td>
+                                            <td class="font-weight-bold">{{number_format($item->montant_total, 0, ',', ' ')}} Fcfa</td>
+                                            <td>{{$item->client->prenom_nom}}</td>
+                                            <td>{{$item->client->telephone}}</td>
+                                            <td>{{$item->agent->name}}</td>
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -230,4 +186,11 @@
     </div>
 </footer>
 <!-- end Footer -->
+@endsection
+
+@section('script')
+<script src="{{ $chart->cdn() }}"></script>
+<script src="{{ $line->cdn() }}"></script>
+{{ $chart->script() }}
+{{ $line->script() }}
 @endsection
