@@ -76,21 +76,18 @@ class VenteController extends Controller
 
             foreach($request->articles as $key_a => $article){
 
-                $article_unitaire = Article::where('id', $article)->first();
+                $article_unitaire = Article::find(intval($article));
                 $vente = Vente::create([
                     'agent_id' => Auth::user()->id,
-                    'article_id' => $article,
+                    'article_id' => intval($article),
                     'quantite_article' => $request->article_quantites[$key_a],
                     'montant_total' => ($article_unitaire['prix_article'] * $request->article_quantites[$key_a]),
                     'client_id' => $request->client_id,
                 ]);
 
-                    $article = Approvisionnement::where([
-                            ['agent_id', Auth::user()->id],
-                            ['article_id', $article]
-                        ])->orderBy('created_at', 'desc')->first();
-                $article->quantite_restant = $article->quantite_restant - $request->article_quantites[$key_a];
-                $article->save();
+                $find_article_approv = Approvisionnement::find( intval($article));
+                $find_article_approv->quantite_restant = $find_article_approv->quantite_restant - $request->article_quantites[$key_a];
+                $find_article_approv->save();
             }
             $vente->save();
 
@@ -106,14 +103,18 @@ class VenteController extends Controller
 
             foreach($request->articles as $key_a => $article){
 
-                $article_unitaire = Article::where('id', $article)->first();
+                $article_unitaire = Article::find(intval($article));
                 $vente = Vente::create([
                     'agent_id' => Auth::user()->id,
-                    'article_id' => $article,
+                    'article_id' => intval($article),
                     'quantite_article' => $request->article_quantites[$key_a],
                     'montant_total' => ($article_unitaire['prix_article'] * $request->article_quantites[$key_a]),
                     'client_id' => $client->id,
                 ]);
+
+                $find_article_approv = Approvisionnement::find( intval($article));
+                $find_article_approv->quantite_restant = $find_article_approv->quantite_restant - $request->article_quantites[$key_a];
+                $find_article_approv->save();
             }
             $vente->save();
 
