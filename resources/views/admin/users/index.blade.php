@@ -23,7 +23,7 @@
 
         <div class="row mb-2">
             <div class="col-md-6 row">
-                <a href="{{route('admin.user-create')}}" class="btn btn-primary text-white waves-effect waves-light mb-3 ml-2"><i class="mdi mdi-plus"></i> Ajouter un utilisateur</a>
+                <a href="javascript: void(0);" data-toggle="modal" data-target="#modalCreateUser" class="btn btn-primary text-white waves-effect waves-light mb-3 ml-2"><i class="mdi mdi-plus"></i> Ajouter un utilisateur</a>
 
                 <div class="col-md-6">
                     <button type="button" class="btn btn-secondary dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> Exporter <i class="mdi mdi-chevron-down"></i> </button>
@@ -108,6 +108,108 @@
         </div>
     </div>
 @endforeach
+
+
+<!-- Modal Create Category -->
+<div class="modal fade" id="modalCreateUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="text-uppercase" id="updateModalLongTitle">Nouveau utilisateur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('admin.user-store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Prénom Nom</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" data-toggle="flatpicker" placeholder="Prénom Nom" required>
+                                @error('name')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Login</label>
+                                <input type="text" name="login" class="form-control @error('login') is-invalid @enderror" data-toggle="flatpicker" placeholder="login" required>
+                                @error('login')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" data-toggle="flatpicker" placeholder="Email" required>
+                                @error('email')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Téléphone</label>
+                                <input type="tel" name="numero_telephone" class="form-control @error('numero_telephone') is-invalid @enderror" data-toggle="flatpicker" placeholder="Numéro Téléphone" required>
+                                @error('numero_telephone')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Photo profil</label>
+                                <input type="file" class="form-control @error('photo_profil') is-invalid @enderror" name="photo_profil" data-toggle="flatpicker">
+                                @error('photo_profil')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <!-- Date View -->
+                            <div class="form-group">
+                                <label>Role d'utilisateur</label>
+                                <select name="role_id" id="role_id" class="form-control @error('role_id') is-invalid @enderror">
+                                    @foreach ($roles as $item)
+                                        <option value="{{$item->id}}">{{$item->nom_role}}</option>
+                                    @endforeach
+                                </select>
+                                @error('role_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success mr-1">Enregistrer</button>
+                    <button type="close" class="btn btn-secondary" data-dismiss="modal" >Annuler</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal Update Statut -->

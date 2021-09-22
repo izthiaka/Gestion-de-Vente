@@ -48,9 +48,9 @@ Route::middleware(['auth', 'isAD'])->prefix('admin')->group(function() {
     Route::put('/profil_password', [UtilisateurController::class, 'update_password'])->name('admin.auth-update_password');
 
     Route::get('/utilisateur', [UtilisateurController::class, 'index'])->name('admin.user-list');
+    Route::get('utilisateurs_search', [UtilisateurController::class, 'index'])->name('admin.user-search');
     Route::get('/utilisateur/{id}', [UtilisateurController::class, 'edit'])->name('admin.user-edit');
     Route::put('/utilisateur/{id}/update', [UtilisateurController::class, 'update'])->name('admin.user-update');
-    Route::get('utilisateurs_search', [UtilisateurController::class, 'index'])->name('admin.user-search');
     Route::put('/statut/{id}', [UtilisateurController::class, 'statut'])->name('admin.user-statut');
     Route::get('/utilisateur/create', [UtilisateurController::class, 'create'])->name('admin.user-create');
     Route::post('/utilisateur/store', [UtilisateurController::class, 'store'])->name('admin.user-store');

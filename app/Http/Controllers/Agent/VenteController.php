@@ -81,7 +81,7 @@ class VenteController extends Controller
                     'agent_id' => Auth::user()->id,
                     'article_id' => $article,
                     'quantite_article' => $request->article_quantites[$key_a],
-                    'montant_total' => ($article_unitaire->prix_article * $request->article_quantites[$key_a]),
+                    'montant_total' => ($article_unitaire['prix_article'] * $request->article_quantites[$key_a]),
                     'client_id' => $request->client_id,
                 ]);
 
@@ -111,7 +111,7 @@ class VenteController extends Controller
                     'agent_id' => Auth::user()->id,
                     'article_id' => $article,
                     'quantite_article' => $request->article_quantites[$key_a],
-                    'montant_total' => ($article_unitaire->prix_article * $request->article_quantites[$key_a]),
+                    'montant_total' => ($article_unitaire['prix_article'] * $request->article_quantites[$key_a]),
                     'client_id' => $client->id,
                 ]);
             }

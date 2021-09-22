@@ -74,7 +74,7 @@
                             <select class="col-md-12 selectpicker agent_id" data-style="btn-light btn-rounded" id="agent_id" name="agent_id" data-live-search="true" title="Choisissez l'agent">
                                 <option disabled selected>Choisissez un agent</option>
                                 @foreach ($users as $user)
-                                    <option @if ($item->id = $user->id) selected @endif value="{{$user->id}}">{{$user->name}} ({{$user->login}})</option>
+                                    <option @if ($item->agent_id == $user->id) selected @endif value="{{$user->id}}">{{$user->name}} ({{$user->login}})</option>
                                 @endforeach
                             </select>
                             @error('agent_id')
@@ -86,7 +86,7 @@
                             <select class="col-md-12 selectpicker article_id" data-style="btn-light btn-rounded" id="article_id" name="article_id" data-live-search="true" title="Choisissez l'agent">
                                 <option disabled selected>Choisissez l'article</option>
                                 @foreach ($articles as $article)
-                                    <option @if ($item->id = $article->id) selected @endif value="{{$article->id}}">{{$article->nom_article}} ({{$article->quantite_article}})</option>
+                                    <option @if ($item->article_id == $article->id) selected @endif value="{{$article->id}}">{{$article->nom_article}} ({{$article->quantite_article}})</option>
                                 @endforeach
                             </select>
                             @error('article_id')
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label>Quantite Article</label>
-                            <input type="text" class="form-control" name="quantite_approv_depart"value={{$item->quantite_approv_depart}}>
+                            <input type="text" class="form-control" name="quantite_approv_depart" value={{$item->quantite_approv_depart}}>
                             @error('quantite_approv_depart')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

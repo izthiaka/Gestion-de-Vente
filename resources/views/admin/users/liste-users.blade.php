@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $key => $item)
+                        @foreach ($users as $item)
                             <tr>
                                 <td class="table-user">
                                     @if ($item->photo_profil != null)

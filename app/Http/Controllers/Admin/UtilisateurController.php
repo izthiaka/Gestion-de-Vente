@@ -22,6 +22,7 @@ class UtilisateurController extends Controller
     public function index(Request $request)
     {
         $users = User::paginate(10);
+        $roles = Role::all();
 
         if($request->ajax()){
             $query = $request->recherche;
@@ -35,7 +36,7 @@ class UtilisateurController extends Controller
                 ->paginate(10);
             return view('admin.users.liste-users', compact('users'))->render();
         }
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -73,7 +74,7 @@ class UtilisateurController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create',compact('roles'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
